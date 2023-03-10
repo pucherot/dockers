@@ -17,7 +17,7 @@ jobs:
         with:
           base-image: ncarlier/webhookd:latest
           image: puche/webhook:latest
-          platforms: linux/arm64
+          platforms: arm64
 
       - name: Build and push
         uses: docker/build-push-action@v3
