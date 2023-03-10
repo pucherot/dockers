@@ -2,7 +2,7 @@ name: Check docker image
 on:
   schedule:
     - cron: '00 * * * *'
-
+  workflow_dispatch:
 
 jobs:
   docker:
