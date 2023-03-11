@@ -6,8 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  check1:
+  check:
     runs-on: ubuntu-latest
+    outputs:
+      needs-updating: ${{ steps.check.outputs.needs-updating }}
     steps:
       - name: Check update of base image
         id: check
@@ -18,7 +20,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
 
   build:
-    needs: check1
+    needs: check
+    if: needs.check.outputs.needs-updating == 'true'
     uses: ./.github/workflows/build_docker_images.yml
     secrets: inherit
   
