@@ -6,12 +6,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  build1:
-    uses: ./.github/workflows/build_docker_images.yml
-    secrets: inherit
+  check1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check update of base image
+        id: check
+        uses: lucacome/docker-image-update-checker@v1
+        with:
+          base-image: ncarlier/webhookd:latest
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
 
-  build2:
-    needs: build1
+  build:
+    needs: check1
     uses: ./.github/workflows/build_docker_images.yml
     secrets: inherit
   
