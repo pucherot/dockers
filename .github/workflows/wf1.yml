@@ -1,4 +1,4 @@
-name: Check docker image
+name: Check docker base image
 on:
 #  schedule:
 #    - cron: '00 * * * *'
