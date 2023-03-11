@@ -1,4 +1,5 @@
 name: Check Docker Base Image
+
 on:
   schedule:
     - cron: '0 1 * * *'
