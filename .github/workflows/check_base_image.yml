@@ -6,8 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkbaseimage:
-        uses: ./.github/workflows/build_docker_images.yml
+  check_base_image:
+    uses: ./.github/workflows/build_docker_images.yml
+    secrets: inherit
+
 #
 #    runs-on: ubuntu-latest
 #    steps:
