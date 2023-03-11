@@ -21,25 +21,6 @@ jobs:
 
   build:
     needs: check
-    if: needs.check.outputs.needs-updating == 'false'
+    if: needs.check.outputs.needs-updating == 'true'
     uses: ./.github/workflows/build_docker_images.yml
     secrets: inherit
-  
-#
-#    runs-on: ubuntu-latest
-#    steps:
-#
-#      - name: Check update of base image
-#        id: check
-#        uses: lucacome/docker-image-update-checker@v1
-#        with:
-#          base-image: ncarlier/webhookd:latest
-#          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
-#          platforms: linux/amd64,linux/arm64,linux/arm/v7
-#
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#
-#      - name: Check update of base image
-#        uses: ./.github/workflows/build_docker_images
-#        if: steps.check.outputs.needs-updating == 'true'
