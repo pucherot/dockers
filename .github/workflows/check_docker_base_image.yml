@@ -1,0 +1,22 @@
+name: Check Docker Base Image
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+
+#      - name: Check update of base image
+#        id: check
+#        uses: lucacome/docker-image-update-checker@v1
+#        with:
+#          base-image: ncarlier/webhookd:latest
+#          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
+#          platforms: linux/amd64,linux/arm64,linux/arm/v7
+
+      - name: Check update of base image
+        uses: ./.github/workflows/build_docker_images.yml
+#        if: steps.check.outputs.needs-updating == 'true'
