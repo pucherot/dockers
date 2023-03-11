@@ -17,6 +17,9 @@ jobs:
 #          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
 #          platforms: linux/amd64,linux/arm64,linux/arm/v7
 
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check update of base image
         uses: ./.github/workflows/build_docker_images.yml
 #        if: steps.check.outputs.needs-updating == 'true'
