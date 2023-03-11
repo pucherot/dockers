@@ -6,11 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-base-image:
+  checkbaseimage:
+        uses: ./.github/workflows/build_docker_images.yml
+#
 #    runs-on: ubuntu-latest
-        uses: ./.github/workflows/build_docker_images
 #    steps:
-
+#
 #      - name: Check update of base image
 #        id: check
 #        uses: lucacome/docker-image-update-checker@v1
@@ -18,10 +19,10 @@ jobs:
 #          base-image: ncarlier/webhookd:latest
 #          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
 #          platforms: linux/amd64,linux/arm64,linux/arm/v7
-
+#
 #      - name: Checkout
 #        uses: actions/checkout@v3
-
+#
 #      - name: Check update of base image
 #        uses: ./.github/workflows/build_docker_images
 #        if: steps.check.outputs.needs-updating == 'true'
