@@ -7,8 +7,9 @@ on:
 
 jobs:
   check_base_image:
-    uses: ./.github/workflows/build_docker_images.yml
-    secrets: inherit
+    - name: Build
+      uses: ./.github/workflows/build_docker_images.yml
+      secrets: inherit
 
 #
 #    runs-on: ubuntu-latest
