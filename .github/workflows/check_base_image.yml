@@ -5,6 +5,12 @@ on:
     - cron: '0 1 * * *'
   workflow_dispatch:
 
+env:
+  DOCKERHUB_USERNAME: puche
+  DOCKERHUB_IMAGE: webhook
+  DOCKERHUB_PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
+  DOCKERHUB_BASE_IMAGE: ncarlier/webhookd:latest
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -15,10 +21,10 @@ jobs:
         id: check
         uses: lucacome/docker-image-update-checker@v1
         with:
-          base-image: ncarlier/webhookd:latest
-          image: ${{ secrets.DOCKERHUB_USERNAME }}/webhook:latest
+          base-image: ${{ env.DOCKERHUB_BASE_IMAGE }}
+          image: ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_IMAGE }}:latest
 #          platforms: linux/amd64,linux/arm64
-#          platforms: linux/amd64,linux/arm64,linux/arm/v7
+#          platforms: ${{ env.DOCKERHUB_PLATFORMS }}
 
   build:
     needs: check
